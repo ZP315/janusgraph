@@ -64,13 +64,6 @@ x-template-standard:
 
 jobs:
   include:
-    - stage: test
-      env: MODULE='release'
-      before_install: sudo apt-get -y install expect
-      install: mvn clean install --batch-mode -Pjanusgraph-release -Dgpg.skip=true -DskipTests=true
-      script: mvn install -pl janusgraph-dist -Pjanusgraph-release -Dgpg.skip=true
-      if: commit_message !~ /\[doc only\]/
-
     - <<: *STANDARD_TEST_JOB
       env: MODULE='driver'
     - <<: *STANDARD_TEST_JOB
